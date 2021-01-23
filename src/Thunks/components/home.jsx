@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import User from './user.jsx';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {getStudentByIdAsync} from '../api/student_api';
 import * as actioncreators from '../actioncreators/student_actioncreators';
 
 class Home extends Component {
     
     componentDidMount(){
-        this.props.getStudentByIdAsync(1, actioncreators.fetchStudentStart, actioncreators.fetchStudentSuccess, actioncreators.fetchStudentFailure);
+        this.props.fetchStudent(1);
     }
 
     render() {
@@ -31,7 +30,7 @@ const MapStateToProps = (state) => {
 }
 
 const MapDispatchToProps = (dispatch) => {
-    return bindActionCreators({getStudentByIdAsync}, dispatch);
+    return bindActionCreators(actioncreators, dispatch);
 }
 
 export default connect(MapStateToProps, MapDispatchToProps)(Home);
