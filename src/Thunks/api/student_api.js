@@ -1,8 +1,16 @@
-import {thunk_api} from './api';
+import {api} from './api';
+import * as actionCreators from '../actioncreators/student_actioncreators';
 
-export const getStudentByIdAsync = (Id, dispatchStart, dispatchSuccess, dispatchFailure) => {
+export const getStudentByIdAsync = (Id) => async (dispatch) => {
     const buildUri = `Student/GetStudentByRollNumber?rollNumber=${Id}`;
-    return thunk_api.get(buildUri, dispatchStart, dispatchSuccess, dispatchFailure);
+    dispatch(actionCreators.fetchStudentStart());
+    try{
+        const data = await api.get(buildUri);
+        dispatch(actionCreators.fetchStudentSuccess(data));
+    }
+    catch(errMsg){
+        dispatch(actionCreators.fetchStudentFailure(errMsg));
+    }
 };
 
 

@@ -30,6 +30,9 @@ const MapStateToProps = (state) => {
 }
 
 const MapDispatchToProps = (dispatch) => {
+    // return {
+    //     fetchStudent: (Id) => dispatch(actioncreators.fetchStudent(Id))
+    // }
     return bindActionCreators(actioncreators, dispatch);
 }
 

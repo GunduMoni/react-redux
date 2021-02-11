@@ -1,8 +1,9 @@
 import * as actiontypes from './actiontypes';
 import {getStudentByIdAsync} from '../api/student_api';
 
+
 export const fetchStudent = (Id) => {
-    return getStudentByIdAsync(Id, fetchStudentStart, fetchStudentSuccess, fetchStudentFailure);
+    return getStudentByIdAsync(Id);
 };
 
 export const fetchStudentStart = () => {

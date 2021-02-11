@@ -2,23 +2,12 @@ import axios from 'axios';
 
 const baseURL = 'http://localhost:64950/api/';
 
-export const thunk_api = {
+export const api = {
 
-    get: (uri, dispatchStart, dispatchSuccess, dispatchFailure) =>{
-    
-        return async dispatch => {
-          dispatch(dispatchStart());
-          
-          try{
+    get: (uri) => {
             const url = baseURL + uri;
-            const response = await axios.get(url);
-            
-            dispatch(dispatchSuccess(response.data));
-          }
-          catch(err){
-            
-            dispatch(dispatchFailure(err.message));
-          }
+            return axios.get(url)
+            .then(resp => {return resp.data})
+            .catch(err => {throw err.message});
         }
-    }
 } 
